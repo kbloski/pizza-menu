@@ -1,15 +1,19 @@
 import "./Pizza.scss"
 
-export default function Pizza( props ) {
-    const soldOut = props.pizzaObj.soldOut;
+export default function Pizza( { pizzaObj } ) {
+    const soldOut = pizzaObj.soldOut;
+
+    // if (soldOut) return null;
+    const { photoName, name, ingredients, price } = pizzaObj;
+
     return (
         <li className={soldOut ? "pizza sold-out" : "pizza"}>
-            <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+            <img src={photoName} alt={name} />
             <div>
-                <h3>{props.pizzaObj.name}</h3>
-                <p>{props.pizzaObj.ingredients}</p>
-                <span>{props.pizzaObj.price}$</span>
-                <p>{props.pizzaObj.soldOut ?? "Wyprzedana"}</p>
+                <h3>{name}</h3>
+                <p>{ingredients}</p>
+                <span>{price}$</span>
+                <p>{!!soldOut && "SOLD OUT"}</p>
             </div>
         </li>
     );
